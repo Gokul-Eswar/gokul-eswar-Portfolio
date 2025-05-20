@@ -1,4 +1,3 @@
-
 import { useRef, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -15,6 +14,9 @@ const Index = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [currentSection, setCurrentSection] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState<'horizontal' | 'vertical'>('horizontal');
+  const [lastWheelTime, setLastWheelTime] = useState(0);
+  const [lastWheelDelta, setLastWheelDelta] = useState({ x: 0, y: 0 });
   
   // Array of sections for tracking purposes
   const sections = [
@@ -23,13 +25,10 @@ const Index = () => {
 
   const scrollLeft = () => {
     if (containerRef.current) {
-      // Apply motion blur during transition
       setIsTransitioning(true);
       setTimeout(() => {
         containerRef.current?.scrollBy({ left: -window.innerWidth, behavior: "smooth" });
         setCurrentSection(prev => Math.max(0, prev - 1));
-        
-        // Remove motion blur after transition completes
         setTimeout(() => setIsTransitioning(false), 500);
       }, 100);
     }
@@ -37,65 +36,82 @@ const Index = () => {
 
   const scrollRight = () => {
     if (containerRef.current) {
-      // Apply motion blur during transition
       setIsTransitioning(true);
       setTimeout(() => {
         containerRef.current?.scrollBy({ left: window.innerWidth, behavior: "smooth" });
         setCurrentSection(prev => Math.min(sections.length - 1, prev + 1));
-        
-        // Remove motion blur after transition completes
         setTimeout(() => setIsTransitioning(false), 500);
       }, 100);
     }
   };
 
-  // Handle mouse wheel events for horizontal scrolling
+  // Handle mouse wheel events for adaptive scrolling
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const handleWheel = (e: WheelEvent) => {
-      // Prevent the default vertical scroll
-      e.preventDefault();
+    const WHEEL_TIMEOUT = 150; // ms to wait before resetting scroll direction
+    const DIRECTION_THRESHOLD = 1.2; // ratio to determine scroll direction
 
-      // Don't process wheel events during transitions
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
       if (isTransitioning) return;
 
-      // Determine scroll direction
-      const scrollingRight = e.deltaY > 0;
-      const scrollingLeft = e.deltaY < 0;
+      const currentTime = Date.now();
+      const deltaX = Math.abs(e.deltaX);
+      const deltaY = Math.abs(e.deltaY);
       
-      if (scrollingRight || scrollingLeft) {
-        // Apply motion blur during transition
-        setIsTransitioning(true);
+      // Update last wheel delta
+      setLastWheelDelta({ x: deltaX, y: deltaY });
+
+      // Determine scroll direction based on dominant axis
+      if (currentTime - lastWheelTime > WHEEL_TIMEOUT) {
+        const isHorizontal = deltaX > deltaY * DIRECTION_THRESHOLD;
+        const isVertical = deltaY > deltaX * DIRECTION_THRESHOLD;
         
-        // Update current section index
-        setCurrentSection(prev => {
-          const newIndex = scrollingRight ? 
-            Math.min(sections.length - 1, prev + 1) : 
-            Math.max(0, prev - 1);
-          return newIndex;
-        });
+        if (isHorizontal || isVertical) {
+          setScrollDirection(isHorizontal ? 'horizontal' : 'vertical');
+        }
+      }
+      
+      setLastWheelTime(currentTime);
+
+      // Apply scroll based on determined direction
+      if (scrollDirection === 'horizontal') {
+        const scrollingRight = e.deltaY > 0 || e.deltaX > 0;
+        const scrollingLeft = e.deltaY < 0 || e.deltaX < 0;
         
-        // Apply the scroll with smooth behavior
-        container.scrollBy({
-          left: scrollingRight ? window.innerWidth : -window.innerWidth,
-          behavior: 'smooth'
-        });
-        
-        // Remove motion blur after transition completes
-        setTimeout(() => setIsTransitioning(false), 500);
+        if (scrollingRight || scrollingLeft) {
+          setIsTransitioning(true);
+          setCurrentSection(prev => {
+            const newIndex = scrollingRight ? 
+              Math.min(sections.length - 1, prev + 1) : 
+              Math.max(0, prev - 1);
+            return newIndex;
+          });
+          
+          container.scrollBy({
+            left: scrollingRight ? window.innerWidth : -window.innerWidth,
+            behavior: 'smooth'
+          });
+          
+          setTimeout(() => setIsTransitioning(false), 500);
+        }
+      } else {
+        // Vertical scrolling
+        const currentSection = container.children[Math.floor(container.scrollLeft / window.innerWidth)];
+        if (currentSection) {
+          currentSection.scrollBy({
+            top: e.deltaY,
+            behavior: 'smooth'
+          });
+        }
       }
     };
 
-    // Add event listener for wheel events
     container.addEventListener('wheel', handleWheel, { passive: false });
-
-    // Clean up the event listener
-    return () => {
-      container.removeEventListener('wheel', handleWheel);
-    };
-  }, [isTransitioning, sections.length]);
+    return () => container.removeEventListener('wheel', handleWheel);
+  }, [isTransitioning, sections.length, scrollDirection, lastWheelTime]);
 
   // Add scroll snap observation
   useEffect(() => {
@@ -110,34 +126,13 @@ const Index = () => {
     };
     
     container.addEventListener('scroll', handleScroll);
-    return () => {
-      container.removeEventListener('scroll', handleScroll);
-    };
+    return () => container.removeEventListener('scroll', handleScroll);
   }, [currentSection]);
-
-  // Update rainbow color based on scroll position
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    
-    const updateRainbowTheme = () => {
-      const totalWidth = container.scrollWidth - window.innerWidth;
-      const progress = container.scrollLeft / totalWidth;
-      document.documentElement.style.setProperty('--rainbow-progress', `${progress * 100}%`);
-    };
-    
-    updateRainbowTheme(); // Initial update
-    container.addEventListener('scroll', updateRainbowTheme);
-    return () => {
-      container.removeEventListener('scroll', updateRainbowTheme);
-    };
-  }, []);
 
   return (
     <div className="min-h-screen flex flex-col rainbow-theme">
       <Navbar />
       
-      {/* Navigation controls */}
       <div className="fixed bottom-8 left-0 right-0 z-50 flex justify-center gap-4">
         <Button 
           variant="outline" 
@@ -159,40 +154,25 @@ const Index = () => {
         </Button>
       </div>
       
-      {/* Horizontal scroll container */}
       <div 
         ref={containerRef}
         className={`flex-1 flex overflow-x-auto snap-x snap-mandatory scrollbar-hide ${isTransitioning ? 'motion-blur motion-blur-active' : 'motion-blur'}`}
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
-        {/* Each section is a snap point */}
-        <div className="min-w-full w-screen h-screen flex-shrink-0 snap-start">
-          <HeroSection />
-        </div>
-        
-        <div className="min-w-full w-screen h-screen flex-shrink-0 snap-start">
-          <AboutSection />
-        </div>
-        
-        <div className="min-w-full w-screen h-screen flex-shrink-0 snap-start">
-          <ProjectsSection />
-        </div>
-        
-        <div className="min-w-full w-screen h-screen flex-shrink-0 snap-start">
-          <ExperienceSection />
-        </div>
-        
-        <div className="min-w-full w-screen h-screen flex-shrink-0 snap-start">
-          <SkillsSection />
-        </div>
-        
-        <div className="min-w-full w-screen h-screen flex-shrink-0 snap-start">
-          <ContactSection />
-        </div>
-        
-        <div className="min-w-full w-screen h-screen flex-shrink-0 snap-start">
-          <Footer />
-        </div>
+        {sections.map((section, index) => (
+          <div 
+            key={section}
+            className="min-w-full w-screen h-screen flex-shrink-0 snap-start overflow-y-auto"
+          >
+            {index === 0 && <HeroSection />}
+            {index === 1 && <AboutSection />}
+            {index === 2 && <ProjectsSection />}
+            {index === 3 && <ExperienceSection />}
+            {index === 4 && <SkillsSection />}
+            {index === 5 && <ContactSection />}
+            {index === 6 && <Footer />}
+          </div>
+        ))}
       </div>
     </div>
   );
