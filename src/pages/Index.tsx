@@ -1,5 +1,5 @@
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
@@ -9,7 +9,6 @@ import ExperienceSection from "@/components/ExperienceSection";
 import SkillsSection from "@/components/SkillsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
@@ -26,6 +25,35 @@ const Index = () => {
       containerRef.current.scrollBy({ left: window.innerWidth * 0.8, behavior: "smooth" });
     }
   };
+
+  // Handle mouse wheel events for horizontal scrolling
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      // Prevent the default vertical scroll
+      e.preventDefault();
+
+      // Determine scroll amount based on wheel delta
+      // Use deltaY for vertical wheel movement to scroll horizontally
+      const scrollAmount = e.deltaY * 2; // Adjust multiplier for scroll sensitivity
+      
+      // Apply the scroll with smooth behavior
+      container.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+    };
+
+    // Add event listener for wheel events
+    container.addEventListener('wheel', handleWheel, { passive: false });
+
+    // Clean up the event listener
+    return () => {
+      container.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-white flex flex-col">

@@ -62,3 +62,15 @@
     scroll-snap-type: x mandatory;
   }
 }
+
+/* Smooth scroll behavior for the container */
+.snap-mandatory {
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+}
+
+/* Enhance snap points for better experience */
+.snap-start {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
