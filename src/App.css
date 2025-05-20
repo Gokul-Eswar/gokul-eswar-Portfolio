@@ -74,3 +74,64 @@
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
+
+/* Rainbow theme animation */
+@keyframes rainbow-bg {
+  0% { background-color: #ff5757; }
+  14% { background-color: #ff914d; }
+  28% { background-color: #ffde59; }
+  42% { background-color: #a5de37; }
+  56% { background-color: #39c5bb; }
+  70% { background-color: #45a0f5; }
+  85% { background-color: #b967ff; }
+  100% { background-color: #ff5757; }
+}
+
+.rainbow-theme {
+  animation: rainbow-bg 30s linear infinite;
+  background-blend-mode: overlay;
+}
+
+/* Motion blur effect for transitions */
+.motion-blur {
+  transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+.motion-blur-active {
+  filter: blur(8px);
+  transform: scale(0.95);
+}
+
+/* Rainbow text effect */
+@keyframes rainbow-text {
+  0% { color: #ff5757; }
+  14% { color: #ff914d; }
+  28% { color: #ffde59; }
+  42% { color: #a5de37; }
+  56% { color: #39c5bb; }
+  70% { color: #45a0f5; }
+  85% { color: #b967ff; }
+  100% { color: #ff5757; }
+}
+
+.rainbow-text {
+  animation: rainbow-text 10s linear infinite;
+}
+
+/* Rainbow border effect */
+@keyframes rainbow-border {
+  0% { border-color: #ff5757; }
+  14% { border-color: #ff914d; }
+  28% { border-color: #ffde59; }
+  42% { border-color: #a5de37; }
+  56% { border-color: #39c5bb; }
+  70% { border-color: #45a0f5; }
+  85% { border-color: #b967ff; }
+  100% { border-color: #ff5757; }
+}
+
+.rainbow-border {
+  border-width: 2px;
+  border-style: solid;
+  animation: rainbow-border 10s linear infinite;
+}

@@ -69,6 +69,15 @@ export default {
 					navy: '#0f172a',
 					lightGray: '#f1f5f9',
 					darkGray: '#334155'
+				},
+				rainbow: {
+					red: '#ff5757',
+					orange: '#ff914d',
+					yellow: '#ffde59',
+					green: '#a5de37',
+					teal: '#39c5bb',
+					blue: '#45a0f5',
+					purple: '#b967ff'
 				}
 			},
 			borderRadius: {
@@ -110,13 +119,24 @@ export default {
 					'100%': {
 						transform: 'translateX(0)'
 					}
+				},
+				'rainbow-animation': {
+					'0%': { backgroundColor: '#ff5757' },
+					'14%': { backgroundColor: '#ff914d' },
+					'28%': { backgroundColor: '#ffde59' },
+					'42%': { backgroundColor: '#a5de37' },
+					'56%': { backgroundColor: '#39c5bb' },
+					'70%': { backgroundColor: '#45a0f5' },
+					'85%': { backgroundColor: '#b967ff' },
+					'100%': { backgroundColor: '#ff5757' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out',
-				'slide-in': 'slide-in 0.5s ease-out'
+				'slide-in': 'slide-in 0.5s ease-out',
+				'rainbow': 'rainbow-animation 30s linear infinite'
 			}
 		}
 	},
