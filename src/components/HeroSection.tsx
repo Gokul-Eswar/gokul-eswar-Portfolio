@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <section 
       id="home" 
-      className="min-h-screen flex flex-col justify-center relative pt-20 pb-10 bg-gradient-to-br from-white to-portfolio-lightGray"
+      className="min-h-screen h-screen flex flex-col justify-center relative pt-20 pb-10 bg-gradient-to-br from-white to-portfolio-lightGray"
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-3xl">
@@ -24,25 +24,35 @@ const HeroSection = () => {
           <div className="flex flex-wrap gap-4 animate-fade-in" style={{ animationDelay: "600ms" }}>
             <Button 
               className="bg-portfolio-blue hover:bg-portfolio-navy text-white"
-              asChild
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              <a href="#projects">View My Projects</a>
+              View My Projects
             </Button>
             <Button 
               variant="outline" 
               className="border-portfolio-blue text-portfolio-blue hover:bg-portfolio-blue/10"
-              asChild
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              <a href="#contact">Contact Me</a>
+              Contact Me
             </Button>
           </div>
         </div>
       </div>
       
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a href="#about" className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-portfolio-blue text-portfolio-blue">
+        <Button 
+          variant="outline"
+          size="icon"
+          className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-portfolio-blue text-portfolio-blue"
+          onClick={() => {
+            const container = document.querySelector('.snap-mandatory');
+            if (container) {
+              container.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+            }
+          }}
+        >
           <ArrowDown size={20} />
-        </a>
+        </Button>
       </div>
     </section>
   );
