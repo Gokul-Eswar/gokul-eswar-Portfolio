@@ -1,4 +1,3 @@
-
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -188,4 +187,32 @@ html.theme-ocean {
 .hover-card:hover {
   border-color: var(--theme-accent);
   box-shadow: 0 0 0 1px var(--theme-accent), 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Sliding Animation Styles */
+.slide-in-animation {
+  visibility: visible;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease-in-out;
+}
+
+.slide-hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Ensure sections have proper stacking context for animations */
+section {
+  position: relative;
+  z-index: 1;
+  overflow-x: hidden;
+}
+
+/* Add smooth scrolling to entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent horizontal overflow */
+body {
+  overflow-x: hidden;
 }

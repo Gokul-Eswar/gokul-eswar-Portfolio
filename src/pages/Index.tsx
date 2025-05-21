@@ -7,6 +7,7 @@ import ExperienceSection from "@/components/ExperienceSection";
 import SkillsSection from "@/components/SkillsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import SlideInSection from "@/components/SlideInSection";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useEffect } from "react";
 
@@ -25,12 +26,30 @@ const Index = () => {
   return (
     <div className={`min-h-screen theme-${theme}`}>
       <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <ProjectsSection />
-      <ExperienceSection />
-      <SkillsSection />
-      <ContactSection />
+      <SlideInSection direction="right">
+        <HeroSection />
+      </SlideInSection>
+      
+      <SlideInSection direction="left">
+        <AboutSection />
+      </SlideInSection>
+      
+      <SlideInSection direction="right">
+        <ProjectsSection />
+      </SlideInSection>
+      
+      <SlideInSection direction="left">
+        <ExperienceSection />
+      </SlideInSection>
+      
+      <SlideInSection direction="right">
+        <SkillsSection />
+      </SlideInSection>
+      
+      <SlideInSection direction="left">
+        <ContactSection />
+      </SlideInSection>
+      
       <Footer />
     </div>
   );

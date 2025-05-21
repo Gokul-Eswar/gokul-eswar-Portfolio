@@ -134,6 +134,26 @@ export default {
 						transform: 'translateX(0)'
 					}
 				},
+				'slide-in-right': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateX(100px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateX(0)'
+					}
+				},
+				'slide-in-left': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateX(-100px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateX(0)'
+					}
+				},
 				'theme-transition': {
 					'0%': { opacity: '0.8' },
 					'100%': { opacity: '1' }
@@ -158,6 +178,8 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out',
 				'slide-in': 'slide-in 0.5s ease-out',
+				'slide-in-right': 'slide-in-right 0.7s ease-out',
+				'slide-in-left': 'slide-in-left 0.7s ease-out',
 				'theme-transition': 'theme-transition 0.5s ease-out',
 				'pulse-accent': 'pulse-accent 2s ease-in-out infinite',
 				'float': 'float 3s ease-in-out infinite'
