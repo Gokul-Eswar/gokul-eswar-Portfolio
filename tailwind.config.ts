@@ -77,17 +77,20 @@ export default {
 					light: {
 						primary: '#ffffff',
 						secondary: '#f1f5f9',
-						text: '#0f172a'
+						text: '#0f172a',
+						accent: '#3b82f6'
 					},
 					dark: {
 						primary: '#121212',
 						secondary: '#1e1e1e',
-						text: '#f8fafc'
+						text: '#f8fafc',
+						accent: '#818cf8'
 					},
 					ocean: {
 						primary: '#0c4a6e',
 						secondary: '#0ea5e9',
-						text: '#f0f9ff'
+						text: '#f0f9ff',
+						accent: '#06b6d4'
 					}
 				}
 			},
@@ -134,6 +137,20 @@ export default {
 				'theme-transition': {
 					'0%': { opacity: '0.8' },
 					'100%': { opacity: '1' }
+				},
+				'pulse-accent': {
+					'0%, 100%': { 
+						opacity: '1',
+						transform: 'scale(1)'
+					},
+					'50%': { 
+						opacity: '0.85',
+						transform: 'scale(1.05)'
+					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
 				}
 			},
 			animation: {
@@ -141,7 +158,9 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out',
 				'slide-in': 'slide-in 0.5s ease-out',
-				'theme-transition': 'theme-transition 0.5s ease-out'
+				'theme-transition': 'theme-transition 0.5s ease-out',
+				'pulse-accent': 'pulse-accent 2s ease-in-out infinite',
+				'float': 'float 3s ease-in-out infinite'
 			}
 		}
 	},

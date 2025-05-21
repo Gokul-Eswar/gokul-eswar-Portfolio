@@ -41,13 +41,7 @@ const Navbar = () => {
   };
 
   const getLinkClasses = () => {
-    if (theme === "light") {
-      return "text-portfolio-darkGray hover:text-portfolio-blue transition-colors";
-    } else if (theme === "dark") {
-      return "text-gray-300 hover:text-white transition-colors";
-    } else {
-      return "text-blue-100 hover:text-white transition-colors";
-    }
+    return "nav-link transition-colors";
   };
 
   const getLogoClasses = () => {
@@ -61,13 +55,7 @@ const Navbar = () => {
   };
 
   const getHighlightClasses = () => {
-    if (theme === "light") {
-      return "text-portfolio-lightBlue";
-    } else if (theme === "dark") {
-      return "text-blue-400";
-    } else {
-      return "text-blue-200";
-    }
+    return "theme-accent";
   };
 
   const getMobileMenuClasses = () => {
@@ -83,7 +71,7 @@ const Navbar = () => {
   return (
     <header className={getNavbarClasses()}>
       <div className="container mx-auto flex justify-between items-center px-4 md:px-6">
-        <a href="#home" className={`font-bold text-2xl ${getLogoClasses()}`}>
+        <a href="#home" className={`font-bold text-2xl ${getLogoClasses()} transition-all hover:scale-105`}>
           Gokul<span className={getHighlightClasses()}>.Dev</span>
         </a>
 
@@ -100,7 +88,7 @@ const Navbar = () => {
               href="https://github.com/Gokul-Eswar" 
               target="_blank" 
               rel="noopener noreferrer"
-              className={getLinkClasses()}
+              className="theme-icon"
             >
               <Github size={20} />
             </a>
@@ -108,7 +96,7 @@ const Navbar = () => {
               href="https://www.linkedin.com/in/gokul-eswar-sns-institutions/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className={getLinkClasses()}
+              className="theme-icon"
             >
               <Linkedin size={20} />
             </a>
@@ -125,6 +113,7 @@ const Navbar = () => {
             variant="ghost"
             size="icon"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="theme-icon"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </Button>
@@ -133,25 +122,25 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className={`md:hidden py-4 px-6 absolute top-full left-0 w-full animate-fade-in ${getMobileMenuClasses()}`}>
+        <div className={`md:hidden py-4 px-6 absolute top-full left-0 w-full animate-fade-in theme-bg-primary theme-border ${getMobileMenuClasses()}`}>
           <nav className="flex flex-col gap-4">
-            <a href="#home" className={getLinkClasses()} onClick={() => setMobileMenuOpen(false)}>Home</a>
-            <a href="#about" className={getLinkClasses()} onClick={() => setMobileMenuOpen(false)}>About</a>
-            <a href="#projects" className={getLinkClasses()} onClick={() => setMobileMenuOpen(false)}>Projects</a>
-            <a href="#experience" className={getLinkClasses()} onClick={() => setMobileMenuOpen(false)}>Experience</a>
-            <a href="#contact" className={getLinkClasses()} onClick={() => setMobileMenuOpen(false)}>Contact</a>
+            <a href="#home" className="menu-item px-3 py-2 rounded-md" onClick={() => setMobileMenuOpen(false)}>Home</a>
+            <a href="#about" className="menu-item px-3 py-2 rounded-md" onClick={() => setMobileMenuOpen(false)}>About</a>
+            <a href="#projects" className="menu-item px-3 py-2 rounded-md" onClick={() => setMobileMenuOpen(false)}>Projects</a>
+            <a href="#experience" className="menu-item px-3 py-2 rounded-md" onClick={() => setMobileMenuOpen(false)}>Experience</a>
+            <a href="#contact" className="menu-item px-3 py-2 rounded-md" onClick={() => setMobileMenuOpen(false)}>Contact</a>
             
             <div className="flex items-center gap-4 py-2">
-              <a href="https://github.com/Gokul-Eswar" target="_blank" rel="noopener noreferrer" className={getLinkClasses()}>
+              <a href="https://github.com/Gokul-Eswar" target="_blank" rel="noopener noreferrer" className="theme-icon">
                 <Github size={20} />
               </a>
-              <a href="https://www.linkedin.com/in/gokul-eswar-sns-institutions/" target="_blank" rel="noopener noreferrer" className={getLinkClasses()}>
+              <a href="https://www.linkedin.com/in/gokul-eswar-sns-institutions/" target="_blank" rel="noopener noreferrer" className="theme-icon">
                 <Linkedin size={20} />
               </a>
-              <a href="mailto:gokuleswar177@gmail.com" className={getLinkClasses()}>
+              <a href="mailto:gokuleswar177@gmail.com" className="theme-icon">
                 <Mail size={20} />
               </a>
-              <a href="tel:+919025699713" className={getLinkClasses()}>
+              <a href="tel:+919025699713" className="theme-icon">
                 <Phone size={20} />
               </a>
             </div>

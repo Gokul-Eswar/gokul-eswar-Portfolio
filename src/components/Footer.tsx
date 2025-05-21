@@ -29,7 +29,7 @@ const Footer = () => {
               href="https://github.com/Gokul-Eswar"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-colors"
+              className="text-white/70 hover:text-white transition-colors theme-icon"
             >
               <Github size={20} />
             </a>
@@ -37,19 +37,19 @@ const Footer = () => {
               href="https://www.linkedin.com/in/gokul-eswar-sns-institutions/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-colors"
+              className="text-white/70 hover:text-white transition-colors theme-icon"
             >
               <Linkedin size={20} />
             </a>
             <a
               href="mailto:gokuleswar177@gmail.com"
-              className="text-white/70 hover:text-white transition-colors"
+              className="text-white/70 hover:text-white transition-colors theme-icon"
             >
               <Mail size={20} />
             </a>
             <a
               href="tel:+919025699713"
-              className="text-white/70 hover:text-white transition-colors"
+              className="text-white/70 hover:text-white transition-colors theme-icon"
             >
               <Phone size={20} />
             </a>

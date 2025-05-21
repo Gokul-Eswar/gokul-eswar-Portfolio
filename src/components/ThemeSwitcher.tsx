@@ -15,14 +15,14 @@ const ThemeSwitcher = () => {
             variant="ghost" 
             size="icon" 
             onClick={toggleTheme}
-            className="transition-colors duration-300"
+            className="transition-all duration-300 theme-icon hover:scale-110"
           >
             {theme === "light" && <Sun className="h-5 w-5" />}
             {theme === "dark" && <Moon className="h-5 w-5" />}
             {theme === "ocean" && <Palette className="h-5 w-5 text-portfolio-oceanBlue" />}
           </Button>
         </TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent className={`theme-bg-primary theme-border`}>
           <p>
             {theme === "light" && "Switch to dark theme"}
             {theme === "dark" && "Switch to ocean theme"}

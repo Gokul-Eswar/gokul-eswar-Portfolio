@@ -17,6 +17,9 @@ const Index = () => {
     // Apply theme to body element
     document.body.classList.remove("theme-light", "theme-dark", "theme-ocean");
     document.body.classList.add(`theme-${theme}`);
+    
+    // Apply CSS variables to body to make them accessible to all components
+    document.documentElement.style.setProperty('--theme-transition-speed', '0.5s');
   }, [theme]);
 
   return (

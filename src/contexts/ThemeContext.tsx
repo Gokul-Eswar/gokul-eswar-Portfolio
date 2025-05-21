@@ -7,6 +7,7 @@ interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
+  accentColor: string;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -17,6 +18,13 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const savedTheme = localStorage.getItem("theme") as Theme | null;
     return savedTheme || "light";
   });
+
+  // Determine accent color based on theme
+  const accentColor = theme === "light" 
+    ? "#3b82f6" // blue for light theme
+    : theme === "dark" 
+    ? "#818cf8" // indigo for dark theme
+    : "#06b6d4"; // cyan for ocean theme
 
   useEffect(() => {
     // Update localStorage when theme changes
@@ -47,7 +55,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme, accentColor }}>
       {children}
     </ThemeContext.Provider>
   );
