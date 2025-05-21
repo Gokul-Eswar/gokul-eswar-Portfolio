@@ -1,9 +1,22 @@
 
 import { Github, Linkedin, Mail, Phone } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const Footer = () => {
+  const { theme } = useTheme();
+
+  const getFooterClasses = () => {
+    if (theme === "light") {
+      return "bg-portfolio-navy py-8 text-white";
+    } else if (theme === "dark") {
+      return "bg-gray-900 py-8 text-white";
+    } else {
+      return "bg-blue-900 py-8 text-white";
+    }
+  };
+
   return (
-    <footer className="bg-portfolio-navy py-8 text-white">
+    <footer className={getFooterClasses()}>
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">

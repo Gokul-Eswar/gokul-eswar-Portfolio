@@ -68,7 +68,27 @@ export default {
 					lightBlue: '#3b82f6',
 					navy: '#0f172a',
 					lightGray: '#f1f5f9',
-					darkGray: '#334155'
+					darkGray: '#334155',
+					dark: '#121212',
+					oceanBlue: '#0ea5e9',
+					oceanDark: '#0369a1'
+				},
+				theme: {
+					light: {
+						primary: '#ffffff',
+						secondary: '#f1f5f9',
+						text: '#0f172a'
+					},
+					dark: {
+						primary: '#121212',
+						secondary: '#1e1e1e',
+						text: '#f8fafc'
+					},
+					ocean: {
+						primary: '#0c4a6e',
+						secondary: '#0ea5e9',
+						text: '#f0f9ff'
+					}
 				}
 			},
 			borderRadius: {
@@ -110,13 +130,18 @@ export default {
 					'100%': {
 						transform: 'translateX(0)'
 					}
+				},
+				'theme-transition': {
+					'0%': { opacity: '0.8' },
+					'100%': { opacity: '1' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out',
-				'slide-in': 'slide-in 0.5s ease-out'
+				'slide-in': 'slide-in 0.5s ease-out',
+				'theme-transition': 'theme-transition 0.5s ease-out'
 			}
 		}
 	},

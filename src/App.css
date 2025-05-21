@@ -1,3 +1,4 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,4 +40,74 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Theme Transition Styles */
+.theme-transition {
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+  animation: theme-fade 0.5s ease-out;
+}
+
+@keyframes theme-fade {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+/* Theme Styles */
+/* Light Theme (default) */
+:root {
+  --theme-bg-primary: #ffffff;
+  --theme-bg-secondary: #f1f5f9;
+  --theme-text-primary: #0f172a;
+  --theme-border: #e2e8f0;
+  --theme-accent: #3b82f6;
+}
+
+/* Dark Theme */
+.theme-dark {
+  --theme-bg-primary: #121212;
+  --theme-bg-secondary: #1e1e1e;
+  --theme-text-primary: #f8fafc;
+  --theme-border: #334155;
+  --theme-accent: #3b82f6;
+}
+
+/* Ocean Theme */
+.theme-ocean {
+  --theme-bg-primary: #0c4a6e;
+  --theme-bg-secondary: #0ea5e9;
+  --theme-text-primary: #f0f9ff;
+  --theme-border: #7dd3fc;
+  --theme-accent: #bae6fd;
+}
+
+/* Apply theme variables */
+body.theme-light,
+body.theme-dark,
+body.theme-ocean,
+html.theme-light,
+html.theme-dark,
+html.theme-ocean {
+  background-color: var(--theme-bg-primary);
+  color: var(--theme-text-primary);
+}
+
+.theme-bg-primary {
+  background-color: var(--theme-bg-primary) !important;
+}
+
+.theme-bg-secondary {
+  background-color: var(--theme-bg-secondary) !important;
+}
+
+.theme-text {
+  color: var(--theme-text-primary) !important;
+}
+
+.theme-border {
+  border-color: var(--theme-border) !important;
+}
+
+.theme-accent {
+  color: var(--theme-accent) !important;
 }

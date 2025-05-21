@@ -7,10 +7,20 @@ import ExperienceSection from "@/components/ExperienceSection";
 import SkillsSection from "@/components/SkillsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import { useTheme } from "@/contexts/ThemeContext";
+import { useEffect } from "react";
 
 const Index = () => {
+  const { theme } = useTheme();
+  
+  useEffect(() => {
+    // Apply theme to body element
+    document.body.classList.remove("theme-light", "theme-dark", "theme-ocean");
+    document.body.classList.add(`theme-${theme}`);
+  }, [theme]);
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className={`min-h-screen theme-${theme}`}>
       <Navbar />
       <HeroSection />
       <AboutSection />
