@@ -2,9 +2,29 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useState, useEffect } from "react";
 
 const HeroSection = () => {
   const { theme } = useTheme();
+  const [typedText, setTypedText] = useState("");
+  const fullText = "Hi, I'm Gokul Eswar";
+  
+  useEffect(() => {
+    // Reset animation if theme changes
+    setTypedText("");
+    
+    let index = 0;
+    const timer = setInterval(() => {
+      if (index < fullText.length) {
+        setTypedText((prev) => prev + fullText.charAt(index));
+        index++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 100); // 0.1 second delay per character for better UX
+    
+    return () => clearInterval(timer);
+  }, [theme]); // Restart effect when theme changes
   
   const getBgClasses = () => {
     if (theme === "light") {
@@ -73,8 +93,9 @@ const HeroSection = () => {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-3xl">
-          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold ${getTextClasses()} mb-4 animate-fade-in`}>
-            Hi, I'm <span className={getHighlightClasses()}>Gokul Eswar</span>
+          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold ${getTextClasses()} mb-4`}>
+            <span className="inline-block">{typedText}</span>
+            <span className="inline-block animate-pulse">|</span>
           </h1>
           <h2 className="text-xl md:text-2xl theme-text mb-6 animate-fade-in" style={{ animationDelay: "200ms" }}>
             Software Developer & Electronics Engineer
