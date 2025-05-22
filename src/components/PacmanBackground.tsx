@@ -76,9 +76,9 @@ const PacmanBackground: React.FC = () => {
     // Get theme-specific colors
     const getBackgroundColor = () => {
       switch (theme) {
-        case 'dark': return 'rgba(18, 18, 18, 0.6)';
-        case 'ocean': return 'rgba(12, 74, 110, 0.6)';
-        default: return 'rgba(255, 255, 255, 0.6)';
+        case 'dark': return 'rgba(18, 18, 18, 0.3)'; // More transparent
+        case 'ocean': return 'rgba(12, 74, 110, 0.3)'; // More transparent
+        default: return 'rgba(255, 255, 255, 0.3)'; // More transparent
       }
     };
     
@@ -121,7 +121,7 @@ const PacmanBackground: React.FC = () => {
       const isOverContent = isOverContentSection(pacman.x, pacman.y);
       ctx.fillStyle = getPacmanColor();
       // Make more transparent when over content
-      ctx.globalAlpha = isOverContent ? 0.3 : 0.8;
+      ctx.globalAlpha = isOverContent ? 0.2 : 0.9; // Higher visibility when not over content
       ctx.beginPath();
       
       // Position and size
@@ -163,7 +163,7 @@ const PacmanBackground: React.FC = () => {
       const isOverContent = isOverContentSection(ghost.x, ghost.y);
       ctx.fillStyle = ghost.color;
       // Make more transparent when over content
-      ctx.globalAlpha = isOverContent ? 0.3 : 0.8;
+      ctx.globalAlpha = isOverContent ? 0.2 : 0.9; // Higher visibility when not over content
       
       // Ghost body (semicircle on top of rectangle)
       const radius = 15;
@@ -233,7 +233,7 @@ const PacmanBackground: React.FC = () => {
         if (!dot.eaten) {
           const isOverContent = isOverContentSection(dot.x, dot.y);
           // Make more transparent when over content
-          ctx.globalAlpha = isOverContent ? 0.2 : 0.6;
+          ctx.globalAlpha = isOverContent ? 0.1 : 0.8; // Higher visibility when not over content
           
           ctx.beginPath();
           ctx.arc(dot.x, dot.y, 3, 0, 2 * Math.PI);
@@ -357,7 +357,7 @@ const PacmanBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-20"
+      className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-40" // Increased opacity from 20 to 40
     />
   );
 };

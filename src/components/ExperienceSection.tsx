@@ -17,13 +17,7 @@ const ExperienceSection = () => {
   };
   
   const getTextClass = () => {
-    if (theme === "light") {
-      return "text-portfolio-navy";
-    } else if (theme === "dark") {
-      return "text-white";
-    } else {
-      return "text-white";
-    }
+    return "text-black";
   };
   
   const getCardBorderClass = () => {
@@ -47,23 +41,11 @@ const ExperienceSection = () => {
   };
   
   const getSubTextClass = () => {
-    if (theme === "light") {
-      return "text-portfolio-darkGray/70";
-    } else if (theme === "dark") {
-      return "text-gray-200";
-    } else {
-      return "text-blue-100";
-    }
+    return "text-black";
   };
   
   const getContentTextClass = () => {
-    if (theme === "light") {
-      return "text-portfolio-darkGray/80";
-    } else if (theme === "dark") {
-      return "text-gray-200";
-    } else {
-      return "text-blue-100";
-    }
+    return "text-black";
   };
   
   const getAccentBgClass = () => {
