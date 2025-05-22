@@ -8,6 +8,7 @@ import SkillsSection from "@/components/SkillsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import SlideInSection from "@/components/SlideInSection";
+import PacmanBackground from "@/components/PacmanBackground";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useEffect } from "react";
 
@@ -25,6 +26,7 @@ const Index = () => {
 
   return (
     <div className={`min-h-screen theme-${theme}`}>
+      <PacmanBackground />
       <Navbar />
       <SlideInSection direction="right">
         <HeroSection />
