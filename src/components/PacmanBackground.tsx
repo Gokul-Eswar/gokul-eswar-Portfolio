@@ -76,9 +76,9 @@ const PacmanBackground: React.FC = () => {
     // Get theme-specific colors
     const getBackgroundColor = () => {
       switch (theme) {
-        case 'dark': return 'rgba(18, 18, 18, 0.8)';
-        case 'ocean': return 'rgba(12, 74, 110, 0.8)';
-        default: return 'rgba(255, 255, 255, 0.8)';
+        case 'dark': return 'rgba(18, 18, 18, 0.6)';
+        case 'ocean': return 'rgba(12, 74, 110, 0.6)';
+        default: return 'rgba(255, 255, 255, 0.6)';
       }
     };
     
@@ -98,10 +98,30 @@ const PacmanBackground: React.FC = () => {
       }
     };
     
+    // Function to check if point is over a content section
+    const isOverContentSection = (x: number, y: number): boolean => {
+      const sections = document.querySelectorAll('section');
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+        if (
+          x >= rect.left && 
+          x <= rect.right && 
+          y >= rect.top && 
+          y <= rect.bottom
+        ) {
+          return true;
+        }
+      }
+      return false;
+    };
+    
     // Draw functions
     const drawPacman = () => {
       ctx.save();
+      const isOverContent = isOverContentSection(pacman.x, pacman.y);
       ctx.fillStyle = getPacmanColor();
+      // Make more transparent when over content
+      ctx.globalAlpha = isOverContent ? 0.3 : 0.8;
       ctx.beginPath();
       
       // Position and size
@@ -140,7 +160,10 @@ const PacmanBackground: React.FC = () => {
     
     const drawGhost = (ghost: Ghost) => {
       ctx.save();
+      const isOverContent = isOverContentSection(ghost.x, ghost.y);
       ctx.fillStyle = ghost.color;
+      // Make more transparent when over content
+      ctx.globalAlpha = isOverContent ? 0.3 : 0.8;
       
       // Ghost body (semicircle on top of rectangle)
       const radius = 15;
@@ -208,6 +231,10 @@ const PacmanBackground: React.FC = () => {
       ctx.fillStyle = getDotColor();
       dots.forEach(dot => {
         if (!dot.eaten) {
+          const isOverContent = isOverContentSection(dot.x, dot.y);
+          // Make more transparent when over content
+          ctx.globalAlpha = isOverContent ? 0.2 : 0.6;
+          
           ctx.beginPath();
           ctx.arc(dot.x, dot.y, 3, 0, 2 * Math.PI);
           ctx.fill();

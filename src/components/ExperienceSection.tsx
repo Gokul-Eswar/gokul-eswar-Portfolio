@@ -50,9 +50,9 @@ const ExperienceSection = () => {
     if (theme === "light") {
       return "text-portfolio-darkGray/70";
     } else if (theme === "dark") {
-      return "text-gray-300/70";
+      return "text-gray-200";
     } else {
-      return "text-blue-100/70";
+      return "text-blue-100";
     }
   };
   
@@ -60,9 +60,9 @@ const ExperienceSection = () => {
     if (theme === "light") {
       return "text-portfolio-darkGray/80";
     } else if (theme === "dark") {
-      return "text-gray-300/80";
+      return "text-gray-200";
     } else {
-      return "text-blue-100/80";
+      return "text-blue-100";
     }
   };
   
