@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 
@@ -31,6 +30,7 @@ const PacmanBackground: React.FC = () => {
     
     // Set canvas to full window size
     const resize = () => {
+      // Make canvas fill the entire screen
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
@@ -38,13 +38,13 @@ const PacmanBackground: React.FC = () => {
     window.addEventListener('resize', resize);
     resize();
     
-    // Initialize game elements
+    // Initialize game elements - make pacman slightly larger
     const pacman: Pacman = {
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       direction: 'right',
       mouthOpen: true,
-      speed: 2
+      speed: 2.5 // Slightly increased speed for better visibility
     };
     
     // Create multiple ghosts with different colors
@@ -76,18 +76,15 @@ const PacmanBackground: React.FC = () => {
     // Get theme-specific colors
     const getBackgroundColor = () => {
       switch (theme) {
-        case 'dark': return 'rgba(18, 18, 18, 0.3)'; // More transparent
-        case 'ocean': return 'rgba(12, 74, 110, 0.3)'; // More transparent
-        default: return 'rgba(255, 255, 255, 0.3)'; // More transparent
+        case 'dark': return 'rgba(18, 18, 18, 0.2)'; // More transparent
+        case 'ocean': return 'rgba(12, 74, 110, 0.2)'; // More transparent
+        default: return 'rgba(255, 255, 255, 0.2)'; // More transparent
       }
     };
     
     const getPacmanColor = () => {
-      switch (theme) {
-        case 'dark': return '#FFFF00';
-        case 'ocean': return '#FFFF00';
-        default: return '#FFFF00';
-      }
+      // Make pacman black regardless of theme
+      return '#000000';
     };
     
     const getDotColor = () => {
@@ -121,11 +118,11 @@ const PacmanBackground: React.FC = () => {
       const isOverContent = isOverContentSection(pacman.x, pacman.y);
       ctx.fillStyle = getPacmanColor();
       // Make more transparent when over content
-      ctx.globalAlpha = isOverContent ? 0.2 : 0.9; // Higher visibility when not over content
+      ctx.globalAlpha = isOverContent ? 0.15 : 0.7; // Higher visibility when not over content
       ctx.beginPath();
       
-      // Position and size
-      const radius = 15;
+      // Position and size - increased size
+      const radius = 18; // Increased from 15
       
       // Determine mouth angle based on direction and animation
       let startAngle = 0;
@@ -163,10 +160,10 @@ const PacmanBackground: React.FC = () => {
       const isOverContent = isOverContentSection(ghost.x, ghost.y);
       ctx.fillStyle = ghost.color;
       // Make more transparent when over content
-      ctx.globalAlpha = isOverContent ? 0.2 : 0.9; // Higher visibility when not over content
+      ctx.globalAlpha = isOverContent ? 0.15 : 0.7; // Higher visibility when not over content
       
-      // Ghost body (semicircle on top of rectangle)
-      const radius = 15;
+      // Ghost body (semicircle on top of rectangle) - increased size
+      const radius = 18; // Increased from 15
       const height = radius * 1.5;
       
       // Draw the upper semicircle
@@ -233,10 +230,10 @@ const PacmanBackground: React.FC = () => {
         if (!dot.eaten) {
           const isOverContent = isOverContentSection(dot.x, dot.y);
           // Make more transparent when over content
-          ctx.globalAlpha = isOverContent ? 0.1 : 0.8; // Higher visibility when not over content
+          ctx.globalAlpha = isOverContent ? 0.1 : 0.6; // Higher visibility when not over content
           
           ctx.beginPath();
-          ctx.arc(dot.x, dot.y, 3, 0, 2 * Math.PI);
+          ctx.arc(dot.x, dot.y, 3.5, 0, 2 * Math.PI); // Slightly larger dots
           ctx.fill();
         }
       });
@@ -281,7 +278,7 @@ const PacmanBackground: React.FC = () => {
       dots.forEach(dot => {
         if (!dot.eaten) {
           const distance = Math.sqrt(Math.pow(pacman.x - dot.x, 2) + Math.pow(pacman.y - dot.y, 2));
-          if (distance < 15) {
+          if (distance < 18) { // Increased eating radius to match larger pacman
             dot.eaten = true;
           }
         }
@@ -357,7 +354,7 @@ const PacmanBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-40" // Increased opacity from 20 to 40
+      className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-70" // Increased opacity from 40 to 70
     />
   );
 };
