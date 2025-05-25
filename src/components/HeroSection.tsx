@@ -1,8 +1,45 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const HeroSection = () => {
+  const [displayText, setDisplayText] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
+  const fullText = "Hi, I'm Gokul Eswar";
+  
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    
+    if (isTyping) {
+      // Typing phase
+      if (displayText.length < fullText.length) {
+        timeout = setTimeout(() => {
+          setDisplayText(fullText.slice(0, displayText.length + 1));
+        }, 150); // typing speed
+      } else {
+        // Pause before erasing
+        timeout = setTimeout(() => {
+          setIsTyping(false);
+        }, 2000); // pause duration
+      }
+    } else {
+      // Erasing phase
+      if (displayText.length > 0) {
+        timeout = setTimeout(() => {
+          setDisplayText(displayText.slice(0, -1));
+        }, 100); // erasing speed
+      } else {
+        // Pause before typing again
+        timeout = setTimeout(() => {
+          setIsTyping(true);
+        }, 500); // pause before restart
+      }
+    }
+    
+    return () => clearTimeout(timeout);
+  }, [displayText, isTyping, fullText]);
+
   return (
     <section 
       id="home" 
@@ -10,8 +47,9 @@ const HeroSection = () => {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-3xl">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-portfolio-navy mb-4 animate-fade-in">
-            Hi, I'm <span className="text-portfolio-lightBlue">Gokul Eswar</span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-portfolio-navy mb-4 min-h-[1.2em]">
+            {displayText}
+            <span className="animate-pulse text-portfolio-lightBlue">|</span>
           </h1>
           <h2 className="text-xl md:text-2xl text-portfolio-darkGray mb-6 animate-fade-in" style={{ animationDelay: "200ms" }}>
             Software Developer & Electronics Engineer
