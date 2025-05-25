@@ -4,37 +4,37 @@ import { Badge } from "@/components/ui/badge";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const ExperienceSection = () => {
-  const { ref: titleRef, isIntersecting: titleVisible } = useIntersectionObserver();
-  const { ref: experienceRef, isIntersecting: experienceVisible } = useIntersectionObserver();
-  const { ref: educationRef, isIntersecting: educationVisible } = useIntersectionObserver();
+  const { ref: titleRef, isIntersecting: titleVisible } = useIntersectionObserver<HTMLDivElement>();
+  const { ref: experienceRef, isIntersecting: experienceVisible } = useIntersectionObserver<HTMLDivElement>();
+  const { ref: educationRef, isIntersecting: educationVisible } = useIntersectionObserver<HTMLDivElement>();
 
   return (
-    <section id="experience" className="py-20 bg-white overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="experience" className="py-32 bg-black relative overflow-hidden">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div ref={titleRef}>
-          <h2 className={`text-3xl md:text-4xl font-bold text-portfolio-navy mb-2 text-center transition-all duration-1000 ${
+          <h2 className={`text-4xl md:text-6xl font-bold mb-4 text-center transition-all duration-1000 ${
             titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            Experience & Education
+            <span className="gradient-text">Experience & Education</span>
           </h2>
-          <div className={`w-20 h-1 bg-portfolio-lightBlue mx-auto mb-10 transition-all duration-1000 delay-200 ${
+          <div className={`w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto mb-16 transition-all duration-1000 delay-200 ${
             titleVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
           }`}></div>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-10">
+        <div className="grid md:grid-cols-2 gap-16">
           {/* Experience Column */}
           <div ref={experienceRef}>
-            <h3 className={`text-xl font-semibold text-portfolio-navy mb-6 flex items-center transition-all duration-1000 delay-300 ${
+            <h3 className={`text-2xl font-semibold text-orange-500 mb-8 flex items-center text-glow transition-all duration-1000 delay-300 ${
               experienceVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
             }`}>
-              <span className="w-8 h-8 bg-portfolio-blue text-white rounded-full flex items-center justify-center mr-2">
+              <span className="w-10 h-10 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full flex items-center justify-center mr-4 glow-orange">
                 <span className="font-bold">E</span>
               </span>
               Experience
             </h3>
             
-            <div className="space-y-6 relative before:absolute before:top-0 before:left-4 before:h-full before:w-0.5 before:bg-portfolio-blue/20">
+            <div className="space-y-8 relative before:absolute before:top-0 before:left-5 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-orange-500 before:to-orange-600/30">
               {[
                 {
                   title: "Prime Solutions",
@@ -51,25 +51,27 @@ const ExperienceSection = () => {
                   delay: "delay-700"
                 }
               ].map((item, index) => (
-                <Card key={index} className={`border-portfolio-blue/20 hover:border-portfolio-blue hover:shadow-md transition-all duration-1000 ml-8 ${item.delay} ${
+                <Card key={index} className={`glass-card border-gray-800 hover:border-orange-500/50 ml-10 cursor-hover group transition-all duration-1000 ${item.delay} ${
                   experienceVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
                 }`}>
-                  <CardHeader className="pb-2">
+                  <CardHeader className="pb-3">
                     <div className="flex justify-between items-start">
-                      <CardTitle className="text-lg text-portfolio-navy">{item.title}</CardTitle>
-                      <Badge className="bg-portfolio-blue/10 text-portfolio-blue hover:bg-portfolio-blue/20">
+                      <CardTitle className="text-xl text-white group-hover:text-orange-500 transition-colors duration-300">{item.title}</CardTitle>
+                      <Badge className="bg-orange-500/20 text-orange-500 border-orange-500/30 hover:bg-orange-500/30">
                         {item.badge}
                       </Badge>
                     </div>
-                    <CardDescription className="text-portfolio-darkGray/70">
+                    <CardDescription className="text-gray-400">
                       {item.subtitle}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="pt-2">
-                    <p className="text-sm text-portfolio-darkGray/80">
+                  <CardContent className="pt-0">
+                    <p className="text-sm text-gray-300 leading-relaxed">
                       {item.description}
                     </p>
                   </CardContent>
+                  {/* Timeline dot */}
+                  <div className="absolute -left-7 top-6 w-4 h-4 bg-orange-500 rounded-full border-4 border-black glow-orange"></div>
                 </Card>
               ))}
             </div>
@@ -77,16 +79,16 @@ const ExperienceSection = () => {
           
           {/* Education Column */}
           <div ref={educationRef}>
-            <h3 className={`text-xl font-semibold text-portfolio-navy mb-6 flex items-center transition-all duration-1000 delay-300 ${
+            <h3 className={`text-2xl font-semibold text-orange-500 mb-8 flex items-center text-glow transition-all duration-1000 delay-300 ${
               educationVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
             }`}>
-              <span className="w-8 h-8 bg-portfolio-blue text-white rounded-full flex items-center justify-center mr-2">
+              <span className="w-10 h-10 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full flex items-center justify-center mr-4 glow-orange">
                 <span className="font-bold">E</span>
               </span>
               Education
             </h3>
             
-            <div className="space-y-6 relative before:absolute before:top-0 before:left-4 before:h-full before:w-0.5 before:bg-portfolio-blue/20">
+            <div className="space-y-8 relative before:absolute before:top-0 before:left-5 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-orange-500 before:to-orange-600/30">
               {[
                 {
                   title: "SNS College of Engineering",
@@ -110,31 +112,36 @@ const ExperienceSection = () => {
                   delay: "delay-900"
                 }
               ].map((item, index) => (
-                <Card key={index} className={`border-portfolio-blue/20 hover:border-portfolio-blue hover:shadow-md transition-all duration-1000 ml-8 ${item.delay} ${
+                <Card key={index} className={`glass-card border-gray-800 hover:border-orange-500/50 ml-10 cursor-hover group transition-all duration-1000 ${item.delay} ${
                   educationVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
                 }`}>
-                  <CardHeader className="pb-2">
+                  <CardHeader className="pb-3">
                     <div className="flex justify-between items-start">
-                      <CardTitle className="text-lg text-portfolio-navy">{item.title}</CardTitle>
-                      <Badge className="bg-portfolio-blue/10 text-portfolio-blue hover:bg-portfolio-blue/20">
+                      <CardTitle className="text-xl text-white group-hover:text-orange-500 transition-colors duration-300">{item.title}</CardTitle>
+                      <Badge className="bg-orange-500/20 text-orange-500 border-orange-500/30 hover:bg-orange-500/30">
                         {item.badge}
                       </Badge>
                     </div>
-                    <CardDescription className="text-portfolio-darkGray/70">
+                    <CardDescription className="text-gray-400">
                       {item.subtitle}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="pt-2">
-                    <p className="text-sm text-portfolio-darkGray/80">
+                  <CardContent className="pt-0">
+                    <p className="text-sm text-gray-300 leading-relaxed">
                       {item.description}
                     </p>
                   </CardContent>
+                  {/* Timeline dot */}
+                  <div className="absolute -left-7 top-6 w-4 h-4 bg-orange-500 rounded-full border-4 border-black glow-orange"></div>
                 </Card>
               ))}
             </div>
           </div>
         </div>
       </div>
+      
+      {/* Background elements */}
+      <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-orange-500/5 rounded-full blur-3xl"></div>
     </section>
   );
 };

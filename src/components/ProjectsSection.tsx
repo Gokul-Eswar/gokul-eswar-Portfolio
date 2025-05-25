@@ -5,8 +5,8 @@ import { Calendar } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const ProjectsSection = () => {
-  const { ref: titleRef, isIntersecting: titleVisible } = useIntersectionObserver();
-  const { ref: projectsRef, isIntersecting: projectsVisible } = useIntersectionObserver();
+  const { ref: titleRef, isIntersecting: titleVisible } = useIntersectionObserver<HTMLDivElement>();
+  const { ref: projectsRef, isIntersecting: projectsVisible } = useIntersectionObserver<HTMLDivElement>();
 
   const projects = [
     {
@@ -33,52 +33,59 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-portfolio-lightGray overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="projects" className="py-32 bg-gray-900/50 relative overflow-hidden">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div ref={titleRef}>
-          <h2 className={`text-3xl md:text-4xl font-bold text-portfolio-navy mb-2 text-center transition-all duration-1000 ${
+          <h2 className={`text-4xl md:text-6xl font-bold mb-4 text-center transition-all duration-1000 ${
             titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            My Projects
+            <span className="gradient-text">My Projects</span>
           </h2>
-          <div className={`w-20 h-1 bg-portfolio-lightBlue mx-auto mb-10 transition-all duration-1000 delay-200 ${
+          <div className={`w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto mb-16 transition-all duration-1000 delay-200 ${
             titleVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
           }`}></div>
         </div>
         
         <div ref={projectsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <Card key={index} className={`border-portfolio-blue/20 hover:border-portfolio-blue hover:shadow-lg transition-all duration-1000 overflow-hidden ${
+            <Card key={index} className={`glass-card border-gray-800 hover:border-orange-500/50 transition-all duration-1000 overflow-hidden cursor-hover group ${
               projectsVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-20 scale-95'
             }`} style={{ transitionDelay: `${index * 200 + 400}ms` }}>
-              <CardHeader>
-                <div className="flex justify-between items-start mb-2">
-                  <Badge variant="secondary" className="bg-portfolio-blue/10 text-portfolio-blue hover:bg-portfolio-blue/20">
+              <CardHeader className="relative">
+                <div className="flex justify-between items-start mb-4">
+                  <Badge className="bg-orange-500/20 text-orange-500 border-orange-500/30 hover:bg-orange-500/30">
                     {project.type}
                   </Badge>
                 </div>
-                <CardTitle className="text-xl text-portfolio-navy">{project.title}</CardTitle>
+                <CardTitle className="text-2xl text-white group-hover:text-orange-500 transition-colors duration-300">
+                  {project.title}
+                </CardTitle>
+                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-orange-500/20 to-transparent rounded-bl-3xl"></div>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-portfolio-darkGray/80 mb-4">
+                <CardDescription className="text-gray-300 mb-6 leading-relaxed">
                   {project.description}
                 </CardDescription>
-                <div className="flex flex-wrap gap-2 mt-4">
+                <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag, idx) => (
-                    <Badge key={idx} variant="outline" className="border-portfolio-blue/40 text-portfolio-blue text-xs">
+                    <Badge key={idx} variant="outline" className="border-gray-600 text-gray-300 hover:border-orange-500/50 hover:text-orange-500 text-xs transition-colors duration-300">
                       {tag}
                     </Badge>
                   ))}
                 </div>
               </CardContent>
-              <CardFooter className="text-sm text-portfolio-darkGray/70 flex items-center">
-                <Calendar size={14} className="mr-2" />
+              <CardFooter className="text-sm text-gray-400 flex items-center border-t border-gray-800 pt-4">
+                <Calendar size={16} className="mr-2 text-orange-500" />
                 {project.date}
               </CardFooter>
             </Card>
           ))}
         </div>
       </div>
+      
+      {/* Background elements */}
+      <div className="absolute top-1/3 left-0 w-72 h-72 bg-orange-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/3 right-0 w-56 h-56 bg-orange-600/5 rounded-full blur-3xl"></div>
     </section>
   );
 };

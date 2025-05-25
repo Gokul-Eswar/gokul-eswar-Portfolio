@@ -33,34 +33,34 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white">
-      <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-portfolio-navy mb-2 text-center">
-          Contact Me
+    <section id="contact" className="py-32 bg-black relative overflow-hidden">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <h2 className="text-4xl md:text-6xl font-bold mb-4 text-center">
+          <span className="gradient-text">Contact Me</span>
         </h2>
-        <div className="w-20 h-1 bg-portfolio-lightBlue mx-auto mb-10"></div>
+        <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto mb-16"></div>
         
-        <div className="grid md:grid-cols-2 gap-10 items-start">
+        <div className="grid md:grid-cols-2 gap-16 items-start">
           <div>
-            <h3 className="text-xl font-medium text-portfolio-navy mb-4">
+            <h3 className="text-2xl font-medium text-orange-500 mb-6 text-glow">
               Let's Connect
             </h3>
-            <p className="text-portfolio-darkGray/80 mb-8">
+            <p className="text-gray-300 mb-12 text-lg leading-relaxed">
               Feel free to reach out for collaborations, job opportunities, or just to say hi! 
               I'm always open to discussing new projects and ideas.
             </p>
             
-            <div className="space-y-4">
-              <Card className="border-portfolio-blue/20 hover:border-portfolio-blue hover:shadow-md transition-all">
-                <CardContent className="flex items-center gap-4 p-4">
-                  <div className="bg-portfolio-blue/10 p-3 rounded-full">
-                    <Mail className="h-5 w-5 text-portfolio-blue" />
+            <div className="space-y-6">
+              <Card className="glass-card border-gray-800 hover:border-orange-500/50 cursor-hover group">
+                <CardContent className="flex items-center gap-6 p-6">
+                  <div className="bg-orange-500/20 p-4 rounded-full border border-orange-500/30">
+                    <Mail className="h-6 w-6 text-orange-500" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-portfolio-navy">Email</h4>
+                    <h4 className="font-medium text-white text-lg mb-1">Email</h4>
                     <a
                       href="mailto:gokuleswar177@gmail.com"
-                      className="text-portfolio-darkGray/70 hover:text-portfolio-blue transition-colors"
+                      className="text-gray-400 hover:text-orange-500 transition-colors text-lg cursor-hover"
                     >
                       gokuleswar177@gmail.com
                     </a>
@@ -68,16 +68,16 @@ const ContactSection = () => {
                 </CardContent>
               </Card>
               
-              <Card className="border-portfolio-blue/20 hover:border-portfolio-blue hover:shadow-md transition-all">
-                <CardContent className="flex items-center gap-4 p-4">
-                  <div className="bg-portfolio-blue/10 p-3 rounded-full">
-                    <Phone className="h-5 w-5 text-portfolio-blue" />
+              <Card className="glass-card border-gray-800 hover:border-orange-500/50 cursor-hover group">
+                <CardContent className="flex items-center gap-6 p-6">
+                  <div className="bg-orange-500/20 p-4 rounded-full border border-orange-500/30">
+                    <Phone className="h-6 w-6 text-orange-500" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-portfolio-navy">Phone</h4>
+                    <h4 className="font-medium text-white text-lg mb-1">Phone</h4>
                     <a
                       href="tel:+919025699713"
-                      className="text-portfolio-darkGray/70 hover:text-portfolio-blue transition-colors"
+                      className="text-gray-400 hover:text-orange-500 transition-colors text-lg cursor-hover"
                     >
                       +91 90256 99713
                     </a>
@@ -85,18 +85,18 @@ const ContactSection = () => {
                 </CardContent>
               </Card>
               
-              <Card className="border-portfolio-blue/20 hover:border-portfolio-blue hover:shadow-md transition-all">
-                <CardContent className="flex items-center gap-4 p-4">
-                  <div className="bg-portfolio-blue/10 p-3 rounded-full">
-                    <Github className="h-5 w-5 text-portfolio-blue" />
+              <Card className="glass-card border-gray-800 hover:border-orange-500/50 cursor-hover group">
+                <CardContent className="flex items-center gap-6 p-6">
+                  <div className="bg-orange-500/20 p-4 rounded-full border border-orange-500/30">
+                    <Github className="h-6 w-6 text-orange-500" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-portfolio-navy">GitHub</h4>
+                    <h4 className="font-medium text-white text-lg mb-1">GitHub</h4>
                     <a
                       href="https://github.com/Gokul-Eswar"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-portfolio-darkGray/70 hover:text-portfolio-blue transition-colors"
+                      className="text-gray-400 hover:text-orange-500 transition-colors text-lg cursor-hover"
                     >
                       github.com/Gokul-Eswar
                     </a>
@@ -104,18 +104,18 @@ const ContactSection = () => {
                 </CardContent>
               </Card>
               
-              <Card className="border-portfolio-blue/20 hover:border-portfolio-blue hover:shadow-md transition-all">
-                <CardContent className="flex items-center gap-4 p-4">
-                  <div className="bg-portfolio-blue/10 p-3 rounded-full">
-                    <Linkedin className="h-5 w-5 text-portfolio-blue" />
+              <Card className="glass-card border-gray-800 hover:border-orange-500/50 cursor-hover group">
+                <CardContent className="flex items-center gap-6 p-6">
+                  <div className="bg-orange-500/20 p-4 rounded-full border border-orange-500/30">
+                    <Linkedin className="h-6 w-6 text-orange-500" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-portfolio-navy">LinkedIn</h4>
+                    <h4 className="font-medium text-white text-lg mb-1">LinkedIn</h4>
                     <a
                       href="https://www.linkedin.com/in/gokul-eswar-sns-institutions/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-portfolio-darkGray/70 hover:text-portfolio-blue transition-colors"
+                      className="text-gray-400 hover:text-orange-500 transition-colors text-lg cursor-hover"
                     >
                       Gokul Eswar
                     </a>
@@ -126,14 +126,14 @@ const ContactSection = () => {
           </div>
           
           <div>
-            <Card className="border-portfolio-blue/20">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-medium text-portfolio-navy mb-4">
+            <Card className="glass-card border-gray-800 hover:border-orange-500/50">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-medium text-orange-500 mb-6 text-glow">
                   Send Me a Message
                 </h3>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="text-sm font-medium text-portfolio-darkGray block mb-1">
+                    <label htmlFor="name" className="text-sm font-medium text-gray-300 block mb-2">
                       Name
                     </label>
                     <Input
@@ -142,12 +142,12 @@ const ContactSection = () => {
                       onChange={(e) => setName(e.target.value)}
                       required
                       placeholder="Your name"
-                      className="border-portfolio-blue/20 focus-visible:ring-portfolio-blue"
+                      className="bg-gray-900/50 border-gray-700 focus:border-orange-500 text-white placeholder-gray-500 cursor-hover"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="text-sm font-medium text-portfolio-darkGray block mb-1">
+                    <label htmlFor="email" className="text-sm font-medium text-gray-300 block mb-2">
                       Email
                     </label>
                     <Input
@@ -157,12 +157,12 @@ const ContactSection = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       placeholder="Your email address"
-                      className="border-portfolio-blue/20 focus-visible:ring-portfolio-blue"
+                      className="bg-gray-900/50 border-gray-700 focus:border-orange-500 text-white placeholder-gray-500 cursor-hover"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="message" className="text-sm font-medium text-portfolio-darkGray block mb-1">
+                    <label htmlFor="message" className="text-sm font-medium text-gray-300 block mb-2">
                       Message
                     </label>
                     <Textarea
@@ -171,14 +171,14 @@ const ContactSection = () => {
                       onChange={(e) => setMessage(e.target.value)}
                       required
                       placeholder="Your message"
-                      className="border-portfolio-blue/20 focus-visible:ring-portfolio-blue min-h-[120px]"
+                      className="bg-gray-900/50 border-gray-700 focus:border-orange-500 text-white placeholder-gray-500 min-h-[120px] cursor-hover"
                     />
                   </div>
                   
                   <Button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="w-full bg-portfolio-blue hover:bg-portfolio-navy text-white"
+                    className="w-full btn-primary text-lg py-3 cursor-hover"
                   >
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
@@ -188,6 +188,10 @@ const ContactSection = () => {
           </div>
         </div>
       </div>
+      
+      {/* Background elements */}
+      <div className="absolute top-1/3 left-1/3 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/3 right-1/3 w-64 h-64 bg-orange-600/10 rounded-full blur-3xl"></div>
     </section>
   );
 };
