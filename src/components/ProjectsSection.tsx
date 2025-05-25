@@ -2,8 +2,12 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const ProjectsSection = () => {
+  const { ref: titleRef, isIntersecting: titleVisible } = useIntersectionObserver();
+  const { ref: projectsRef, isIntersecting: projectsVisible } = useIntersectionObserver();
+
   const projects = [
     {
       title: "Street light fault detection system",
@@ -29,16 +33,24 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-portfolio-lightGray">
+    <section id="projects" className="py-20 bg-portfolio-lightGray overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-portfolio-navy mb-2 text-center">
-          My Projects
-        </h2>
-        <div className="w-20 h-1 bg-portfolio-lightBlue mx-auto mb-10"></div>
+        <div ref={titleRef}>
+          <h2 className={`text-3xl md:text-4xl font-bold text-portfolio-navy mb-2 text-center transition-all duration-1000 ${
+            titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
+            My Projects
+          </h2>
+          <div className={`w-20 h-1 bg-portfolio-lightBlue mx-auto mb-10 transition-all duration-1000 delay-200 ${
+            titleVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
+          }`}></div>
+        </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={projectsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <Card key={index} className="border-portfolio-blue/20 hover:shadow-lg transition-all overflow-hidden">
+            <Card key={index} className={`border-portfolio-blue/20 hover:border-portfolio-blue hover:shadow-lg transition-all duration-1000 overflow-hidden ${
+              projectsVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-20 scale-95'
+            }`} style={{ transitionDelay: `${index * 200 + 400}ms` }}>
               <CardHeader>
                 <div className="flex justify-between items-start mb-2">
                   <Badge variant="secondary" className="bg-portfolio-blue/10 text-portfolio-blue hover:bg-portfolio-blue/20">
