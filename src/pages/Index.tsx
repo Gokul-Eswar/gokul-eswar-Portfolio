@@ -7,10 +7,12 @@ import ExperienceSection from "@/components/ExperienceSection";
 import SkillsSection from "@/components/SkillsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import PacmanBackground from "@/components/PacmanBackground";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative">
+      <PacmanBackground />
       <Navbar />
       <HeroSection />
       <AboutSection />

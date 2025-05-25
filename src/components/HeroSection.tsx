@@ -45,8 +45,8 @@ const HeroSection = () => {
       id="home" 
       className="min-h-screen flex flex-col justify-center relative pt-20 pb-10 bg-gradient-to-br from-white to-portfolio-lightGray"
     >
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="max-w-3xl">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="max-w-3xl bg-white/90 backdrop-blur-sm rounded-lg p-8 shadow-lg">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-portfolio-navy mb-4 min-h-[1.2em]">
             {displayText}
             <span className="animate-pulse text-portfolio-lightBlue">|</span>
@@ -77,8 +77,8 @@ const HeroSection = () => {
         </div>
       </div>
       
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a href="#about" className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-portfolio-blue text-portfolio-blue">
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+        <a href="#about" className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-portfolio-blue text-portfolio-blue bg-white/80 backdrop-blur-sm">
           <ArrowDown size={20} />
         </a>
       </div>
