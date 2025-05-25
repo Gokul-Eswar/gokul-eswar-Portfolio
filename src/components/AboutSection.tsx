@@ -4,51 +4,44 @@ import { Briefcase, School, Code, Award } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const AboutSection = () => {
-  const { ref: titleRef, isIntersecting: titleVisible } = useIntersectionObserver<HTMLDivElement>();
-  const { ref: contentRef, isIntersecting: contentVisible } = useIntersectionObserver<HTMLDivElement>();
-  const { ref: cardsRef, isIntersecting: cardsVisible } = useIntersectionObserver<HTMLDivElement>();
+  const { ref: titleRef, isIntersecting: titleVisible } = useIntersectionObserver();
+  const { ref: contentRef, isIntersecting: contentVisible } = useIntersectionObserver();
+  const { ref: cardsRef, isIntersecting: cardsVisible } = useIntersectionObserver();
 
   return (
-    <section id="about" className="py-32 bg-portfolio-light overflow-hidden">
+    <section id="about" className="py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
-        <div ref={titleRef} className="mb-20">
-          <span className={`text-portfolio-accent text-sm font-medium tracking-wider uppercase mb-4 block transition-all duration-1000 ${
+        <div ref={titleRef}>
+          <h2 className={`text-3xl md:text-4xl font-bold text-portfolio-navy mb-2 text-center transition-all duration-1000 ${
             titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
             About Me
-          </span>
-          <h2 className={`text-5xl md:text-6xl font-black text-white mb-6 transition-all duration-1000 delay-200 ${
-            titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-            Building the Future
           </h2>
-          <div className={`w-24 h-1 bg-portfolio-accent transition-all duration-1000 delay-400 ${
+          <div className={`w-20 h-1 bg-portfolio-lightBlue mx-auto mb-10 transition-all duration-1000 delay-200 ${
             titleVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
           }`}></div>
         </div>
         
-        <div className="grid lg:grid-cols-2 gap-20 items-start">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
           <div ref={contentRef} className={`transition-all duration-1000 delay-300 ${
             contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
           }`}>
-            <h3 className="text-2xl font-bold text-white mb-6">
+            <h3 className="text-xl font-medium text-portfolio-darkGray mb-4">
               Background & Education
             </h3>
-            <div className="space-y-6 text-lg text-portfolio-gray leading-relaxed">
-              <p>
-                I'm a Software Developer with a background in Electronics and Communication Engineering 
-                from SNS College of Engineering in Coimbatore. I graduated in 2026 with a CGPA of 8.93.
-              </p>
-              <p>
-                My passion lies in designing and developing innovative solutions that combine hardware 
-                and software. I'm particularly interested in IoT, embedded systems, and creating applications 
-                that solve real-world problems.
-              </p>
-              <p>
-                When I'm not coding, I enjoy learning new technologies, working on personal projects, and 
-                continuously improving my skills through online courses and certifications.
-              </p>
-            </div>
+            <p className="text-portfolio-darkGray/80 mb-4">
+              I'm a Software Developer with a background in Electronics and Communication Engineering 
+              from SNS College of Engineering in Coimbatore. I graduated in 2026 with a CGPA of 8.93.
+            </p>
+            <p className="text-portfolio-darkGray/80 mb-4">
+              My passion lies in designing and developing innovative solutions that combine hardware 
+              and software. I'm particularly interested in IoT, embedded systems, and creating applications 
+              that solve real-world problems.
+            </p>
+            <p className="text-portfolio-darkGray/80">
+              When I'm not coding, I enjoy learning new technologies, working on personal projects, and 
+              continuously improving my skills through online courses and certifications.
+            </p>
           </div>
           
           <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -58,15 +51,17 @@ const AboutSection = () => {
               { icon: Code, title: "Skills", desc: "Python, Java, MCP, GitHub, Ohima, Windows", delay: "delay-900" },
               { icon: Award, title: "Certifications", desc: "Python, AI Foundation, AI Associate, Cloud Foundation", delay: "delay-1000" }
             ].map((item, index) => (
-              <Card key={index} className={`bg-glass border-white/10 hover:border-portfolio-accent/50 hover-lift transition-all duration-1000 ${item.delay} ${
-                cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              <Card key={index} className={`border-portfolio-blue/20 hover:border-portfolio-blue hover:shadow-md transition-all duration-1000 ${item.delay} ${
+                cardsVisible ? 'opacity-100 translate-y-0 rotate-0' : 'opacity-0 translate-y-10 rotate-3'
               }`}>
-                <CardContent className="p-8">
-                  <div className="bg-portfolio-accent/10 p-4 rounded-xl mb-4 w-fit">
-                    <item.icon className="h-8 w-8 text-portfolio-accent" />
+                <CardContent className="flex items-start gap-4 p-6">
+                  <div className="bg-portfolio-blue/10 p-3 rounded-lg">
+                    <item.icon className="h-6 w-6 text-portfolio-blue" />
                   </div>
-                  <h4 className="font-bold text-white mb-2 text-lg">{item.title}</h4>
-                  <p className="text-portfolio-gray text-sm leading-relaxed">{item.desc}</p>
+                  <div>
+                    <h4 className="font-medium text-portfolio-navy mb-1">{item.title}</h4>
+                    <p className="text-sm text-portfolio-darkGray/70">{item.desc}</p>
+                  </div>
                 </CardContent>
               </Card>
             ))}

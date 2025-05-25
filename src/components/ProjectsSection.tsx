@@ -1,12 +1,12 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, ArrowUpRight } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const ProjectsSection = () => {
-  const { ref: titleRef, isIntersecting: titleVisible } = useIntersectionObserver<HTMLDivElement>();
-  const { ref: projectsRef, isIntersecting: projectsVisible } = useIntersectionObserver<HTMLDivElement>();
+  const { ref: titleRef, isIntersecting: titleVisible } = useIntersectionObserver();
+  const { ref: projectsRef, isIntersecting: projectsVisible } = useIntersectionObserver();
 
   const projects = [
     {
@@ -33,51 +33,45 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section id="projects" className="py-32 bg-portfolio-dark overflow-hidden">
+    <section id="projects" className="py-20 bg-portfolio-lightGray overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
-        <div ref={titleRef} className="mb-20">
-          <span className={`text-portfolio-accent text-sm font-medium tracking-wider uppercase mb-4 block transition-all duration-1000 ${
+        <div ref={titleRef}>
+          <h2 className={`text-3xl md:text-4xl font-bold text-portfolio-navy mb-2 text-center transition-all duration-1000 ${
             titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            My Work
-          </span>
-          <h2 className={`text-5xl md:text-6xl font-black text-white mb-6 transition-all duration-1000 delay-200 ${
-            titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-            Featured Projects
+            My Projects
           </h2>
-          <div className={`w-24 h-1 bg-portfolio-accent transition-all duration-1000 delay-400 ${
+          <div className={`w-20 h-1 bg-portfolio-lightBlue mx-auto mb-10 transition-all duration-1000 delay-200 ${
             titleVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
           }`}></div>
         </div>
         
         <div ref={projectsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <Card key={index} className={`bg-glass border-white/10 hover:border-portfolio-accent/50 hover-lift group cursor-pointer transition-all duration-1000 ${
-              projectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+            <Card key={index} className={`border-portfolio-blue/20 hover:border-portfolio-blue hover:shadow-lg transition-all duration-1000 overflow-hidden ${
+              projectsVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-20 scale-95'
             }`} style={{ transitionDelay: `${index * 200 + 400}ms` }}>
-              <CardHeader className="pb-4">
-                <div className="flex justify-between items-start mb-4">
-                  <Badge className="bg-portfolio-accent/10 text-portfolio-accent hover:bg-portfolio-accent/20 border-portfolio-accent/20">
+              <CardHeader>
+                <div className="flex justify-between items-start mb-2">
+                  <Badge variant="secondary" className="bg-portfolio-blue/10 text-portfolio-blue hover:bg-portfolio-blue/20">
                     {project.type}
                   </Badge>
-                  <ArrowUpRight className="w-5 h-5 text-portfolio-gray group-hover:text-portfolio-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                 </div>
-                <CardTitle className="text-2xl text-white font-bold group-hover:text-portfolio-accent transition-colors">{project.title}</CardTitle>
+                <CardTitle className="text-xl text-portfolio-navy">{project.title}</CardTitle>
               </CardHeader>
-              <CardContent className="pb-4">
-                <CardDescription className="text-portfolio-gray leading-relaxed mb-6">
+              <CardContent>
+                <CardDescription className="text-portfolio-darkGray/80 mb-4">
                   {project.description}
                 </CardDescription>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mt-4">
                   {project.tags.map((tag, idx) => (
-                    <Badge key={idx} variant="outline" className="border-white/20 text-white/70 text-xs hover:border-portfolio-accent/50 hover:text-portfolio-accent transition-colors">
+                    <Badge key={idx} variant="outline" className="border-portfolio-blue/40 text-portfolio-blue text-xs">
                       {tag}
                     </Badge>
                   ))}
                 </div>
               </CardContent>
-              <CardFooter className="text-sm text-portfolio-gray flex items-center pt-4 border-t border-white/10">
+              <CardFooter className="text-sm text-portfolio-darkGray/70 flex items-center">
                 <Calendar size={14} className="mr-2" />
                 {project.date}
               </CardFooter>
