@@ -68,30 +68,7 @@ export default {
 					lightBlue: '#3b82f6',
 					navy: '#0f172a',
 					lightGray: '#f1f5f9',
-					darkGray: '#334155',
-					dark: '#121212',
-					oceanBlue: '#0ea5e9',
-					oceanDark: '#0369a1'
-				},
-				theme: {
-					light: {
-						primary: '#ffffff',
-						secondary: '#f1f5f9',
-						text: '#0f172a',
-						accent: '#3b82f6'
-					},
-					dark: {
-						primary: '#121212',
-						secondary: '#1e1e1e',
-						text: '#f8fafc',
-						accent: '#818cf8'
-					},
-					ocean: {
-						primary: '#0c4a6e',
-						secondary: '#0ea5e9',
-						text: '#f0f9ff',
-						accent: '#06b6d4'
-					}
+					darkGray: '#334155'
 				}
 			},
 			borderRadius: {
@@ -133,56 +110,13 @@ export default {
 					'100%': {
 						transform: 'translateX(0)'
 					}
-				},
-				'slide-in-right': {
-					'0%': {
-						opacity: '0',
-						transform: 'translateX(100px)'
-					},
-					'100%': {
-						opacity: '1',
-						transform: 'translateX(0)'
-					}
-				},
-				'slide-in-left': {
-					'0%': {
-						opacity: '0',
-						transform: 'translateX(-100px)'
-					},
-					'100%': {
-						opacity: '1',
-						transform: 'translateX(0)'
-					}
-				},
-				'theme-transition': {
-					'0%': { opacity: '0.8' },
-					'100%': { opacity: '1' }
-				},
-				'pulse-accent': {
-					'0%, 100%': { 
-						opacity: '1',
-						transform: 'scale(1)'
-					},
-					'50%': { 
-						opacity: '0.85',
-						transform: 'scale(1.05)'
-					}
-				},
-				'float': {
-					'0%, 100%': { transform: 'translateY(0)' },
-					'50%': { transform: 'translateY(-10px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out',
-				'slide-in': 'slide-in 0.5s ease-out',
-				'slide-in-right': 'slide-in-right 0.7s ease-out',
-				'slide-in-left': 'slide-in-left 0.7s ease-out',
-				'theme-transition': 'theme-transition 0.5s ease-out',
-				'pulse-accent': 'pulse-accent 2s ease-in-out infinite',
-				'float': 'float 3s ease-in-out infinite'
+				'slide-in': 'slide-in 0.5s ease-out'
 			}
 		}
 	},
